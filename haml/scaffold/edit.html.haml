@@ -1,0 +1,10 @@
+.osd-unit
+  .page-header
+    %h1
+      Edit <%= singular_table_name.capitalize %>
+      .pull-right
+        = link_to 'Show', @<%= singular_table_name %>, :class => 'btn'
+        = link_to raw(t('back',back_to: "<%= plural_table_name.capitalize %>")), <%= index_helper %>_path, :class => 'btn'
+  = render 'form'
+
+

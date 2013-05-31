@@ -1,0 +1,23 @@
+.osd-unit
+  .page-header
+    %h1
+      <%= plural_table_name.capitalize %>
+      .pull-right
+        = link_to raw(t('new')), new_<%= singular_table_name %>_path, :class => 'btn btn-primary'
+
+  %table#<%= plural_table_name %>.table.table-bordered.table-striped.dataTable
+    %thead
+      %tr
+  <% for attribute in attributes -%>
+      %th <%= attribute.human_name %>
+  <% end -%>
+      %th
+    %tbody
+      - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+        %tr
+    <% for attribute in attributes -%>
+      %td= <%= singular_table_name %>.<%= attribute.name %>
+    <% end -%>
+      %td
+            = link_to raw(t('edit')), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-small'
+            = link_to raw(t('destroy')), <%= singular_table_name %>, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-small btn-danger'
