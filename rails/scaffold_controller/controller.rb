@@ -7,7 +7,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   respond_to :html, :json
 
   expose(:<%= plural_table_name %>) {  <%= orm_class.all(class_name) %> }
-  expose(:<%= singular_table_name %>)
+  expose(:<%= singular_table_name %>) { params[:id].present? ? <%= class_name %>.find(params[:id]) : <%= class_name %>.new(params[:<%= singular_table_name %>]) }
 
   # POST <%= route_url %>
   # POST <%= route_url %>.json
